@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BeeDataSet
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="BeeDataSetSchema.xsd">
+
+  <apiary>
+    <apiaryID>1</apiaryID>
+    <beekeeperID>1</beekeeperID>
+    <latitude>36.216797</latitude>
+    <longitude>-81.674553</longitude>
+    <name>Apiary 1</name>
+    <address>148 Faculty Street</address>
+    <country>USA</country>
+    <hiveCount>2</hiveCount>
+    <active>true</active>
+    <environment>urban</environment>
+    <lastVisited>2019-09-13</lastVisited>
+    <timeZone>EDT</timeZone>
+    <startDate>2019-01-01</startDate>
+    <orientation>east</orientation>
+    <type>fixed</type>
+    <notes>none</notes>
+  </apiary>
+
+  <beekeeper>
+    <beekeeperID>1</beekeeperID>
+    <email>brownle2@appstate.edu</email>
+    <firstname>Lucy</firstname>
+    <lastname>Brown</lastname>
+    <phone>9048143317</phone>
+  </beekeeper>
+
+</BeeDataSet>

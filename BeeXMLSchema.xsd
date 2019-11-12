@@ -1,0 +1,96 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="BeeDataSet" msdata:IsDataSet="true">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="apiary" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="apiaryID" type="xs:int">
+                            <xs:element name="beekeeperID" type="xs:int"/>
+                            <xs:element name="latitude" type="xs:decimal"/>
+                            <xs:element name="longitude" type="xs:decimal"/>
+                            <xs:element name="name" type="xs:string"/>
+                            <!--<xs:element name="photo" type="xs:photo"/>this needs to be changed -->
+                            <xs:element name="address" type="xs:string"/>
+                            <xs:element name="country" type="xs:string"/>
+                            <xs:element name="hiveCount" type="xs:int"/>
+                            <xs:element name="active" type="xs:boolean"/>
+                            <xs:element name="environment" type="apiaryEnvironment"/>
+                            <xs:element name="lastVisited" type="xs:datetime"/>
+                            <xs:element name="timeZone" type="xs:string"/>
+                            <xs:element name="startDate" type="xs:date"/>
+                            <xs:element name="orientation" type="apiaryOrientation"/>
+                            <xs:element name="type" type="apiaryType"/>
+                            <xs:element name="notes" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="beekeeper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="beekeeperID" type="xs:int">
+                            <xs:element name="email" type="xs:string"/>
+                            <xs:element name="firstname" type="xs:string"/>
+                            <xs:element name="lastname" type="xs:string"/>
+                            <xs:element name="phone" type"xs:integer"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- enum types for apiary table -->
+                <xs:simpleType name="apiaryEnvironment" final="restriction">
+                    <xs:restriction base="xs:string">
+                    <xs:enumeration value="other"/>
+                    <xs:enumeration value="natural"/>
+                    <xs:enumeration value="agricultural"/>
+                    <xs:enumeration value="urban"/>
+                    </xs:restriction>
+                </xs:simpleType>
+
+                <xs:simpleType name="apiaryOrientation" final="restriction">
+                    <xs:restriction base="xs:string">
+                    <xs:enumeration value="east"/>
+                    <xs:enumeration value="north"/>
+                    <xs:enumeration value="northwest"/>
+                    <xs:enumeration value="northeast"/>
+                    <xs:enumeration value="south"/>
+                    <xs:enumeration value="southwest"/>
+                    <xs:enumeration value="southeast"/>
+                    <xs:enumeration value="west"/>
+                    <xs:enumeration value="various"/>
+                    </xs:restriction>
+                </xs:simpleType>
+
+                <xs:simpleType name="apiaryType" final="restriction">
+                    <xs:restriction base="xs:string">
+                    <xs:enumeration value="client"/>
+                    <xs:enumeration value="fixed"/>
+                    <xs:enumeration value="moveable"/>
+                    <xs:enumeration value="other"/>
+                    <xs:enumeration value="temporary"/>
+                    </xs:restriction>
+                </xs:simpleType>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+        <!-- keys for apiary table -->
+        <xs:key name="apiaryKey" msdata:PrimaryKey="true">
+            <xs:selector xpath="apiary/apiaryID"/>
+            <xs:field xpath="@apiaryID"/>
+        </xs:key>
+
+        <xs:keyref name="apiaryKeyRef" refer="apiaryKey">
+            <xs:selector xpath="beekeeper/beekeeperID">
+            <xs:field xpath="@beekeeperID">
+        </xs:keyref>
+
+    </xs:element>
+
+</xs:schema>
