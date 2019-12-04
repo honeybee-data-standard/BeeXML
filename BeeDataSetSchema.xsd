@@ -1,0 +1,134 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+
+    <xs:element name="BeeDataSet" msdata:IsDataSet="true">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="apiary" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="apiaryID" type="xs:int"/>
+                            <xs:element name="beekeeperID" type="xs:int"/>
+                            <xs:element name="latitude" type="xs:decimal" minOccurs="0"/>
+                            <xs:element name="longitude" type="xs:decimal" minOccurs="0"/>
+                            <xs:element name="name" type="xs:string" minOccurs="0"/>
+                            <xs:element name="address" type="xs:string" minOccurs="0"/>
+                            <xs:element name="country" type="xs:string" minOccurs="0"/>
+                            <xs:element name="hiveCount" type="xs:int" minOccurs="0"/>
+                            <xs:element name="active" type="xs:boolean" minOccurs="0"/>
+                            <xs:element name="environment" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="other"/>
+                                        <xs:enumeration value="natural"/>
+                                        <xs:enumeration value="agricultural"/>
+                                        <xs:enumeration value="urban"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="lastVisited" type="xs:date" minOccurs="0"/>
+                            <xs:element name="timeZone" type="xs:string" minOccurs="0"/>
+                            <xs:element name="startDate" type="xs:date" minOccurs="0"/>
+                            <xs:element name="orientation" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="east"/>
+                                        <xs:enumeration value="north"/>
+                                        <xs:enumeration value="northwest"/>
+                                        <xs:enumeration value="northeast"/>
+                                        <xs:enumeration value="south"/>
+                                        <xs:enumeration value="southwest"/>
+                                        <xs:enumeration value="southeast"/>
+                                        <xs:enumeration value="west"/>
+                                        <xs:enumeration value="various"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="hiveType" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="client"/>
+                                        <xs:enumeration value="fixed"/>
+                                        <xs:enumeration value="moveable"/>
+                                        <xs:enumeration value="other"/>
+                                        <xs:enumeration value="temporary"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="beekeeper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="beekeeperID" type="xs:int" maxOccurs="1" minOccurs="1"/>
+                            <xs:element name="email" type="xs:string" minOccurs="0"/>
+                            <xs:element name="firstname" type="xs:string" minOccurs="0"/>
+                            <xs:element name="lastname" type="xs:string" minOccurs="0"/>
+                            <xs:element name="phone" type="xs:integer" minOccurs="0"/>
+                            <xs:element name="beekeeperSince" type="xs:date" minOccurs="0"/>
+                            <xs:element name="companyLocation" type="xs:string" minOccurs="0"/>
+                            <xs:element name="role" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="student"/>
+                                        <xs:enumeration value="teacher"/>
+                                        <xs:enumeration value="other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="birthdate" type="xs:date" minOccurs="0"/>
+                            <xs:element name="gender" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="prefer not to say"/>
+                                        <xs:enumeration value="female"/>
+                                        <xs:enumeration value="male"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="method" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="biodynamic"/>
+                                        <xs:enumeration value="commercial"/>
+                                        <xs:enumeration value="conventional"/>
+                                        <xs:enumeration value="natural"/>
+                                        <xs:enumeration value="organic"/>
+                                        <xs:enumeration value="other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+        <!-- keys  -->
+        <xs:key name="apiaryKey" msdata:PrimaryKey="true">
+            <xs:selector xpath=".//apiary"/>
+            <xs:field xpath="apiaryID"/>
+        </xs:key>
+
+        <xs:key name="beekeeperKey" msdata:PrimaryKey="true">
+            <xs:selector xpath=".//beekeeper"/>
+            <xs:field xpath="beekeeperID"/>
+        </xs:key>
+
+        <xs:keyref name="apiaryKeyRef" refer="beekeeperKey">
+            <xs:selector xpath=".//apiary"/>
+            <xs:field xpath="beekeeperID"/>
+        </xs:keyref>
+
+    </xs:element>
+
+</xs:schema>
